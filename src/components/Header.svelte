@@ -7,18 +7,15 @@
   // asset paths
   let lightLogoPath = 'assets/logo-light.svg';
 
-  $: width;
-  $: height;
-
-  console.log(colors);
-  console.log(width, height);
+  export let width = window.innerWidth;
+  $: mobile = width < 700;
 </script>
 
 <style>
   .headerContainer {
     width: 100%;
     display: flex;
-    flex-direction: row;
+    flex-direction: var(--direction);
     align-items: center;
     justify-content: space-between;
   }
@@ -31,6 +28,15 @@
     justify-content: flex-end;
   }
 
+  .linksContainerMobile {
+    min-width: 50%;
+    padding-top: 5%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+
   .mainLink {
     transition: 0.5s;
     margin-left: 5%;
@@ -41,7 +47,7 @@
   }
   .mainLink:hover {
     transition: 0.5s;
-    color: #ff3e00;
+    color: var(--hoverColor);
     text-decoration: none;
   }
 
@@ -51,11 +57,11 @@
   }
 </style>
 
-<svelte:window bind:innerWidth={width} bind:innerHeight={height} />
+<svelte:window bind:innerWidth={width} />
 
-<div class="headerContainer">
+<div class="headerContainer" style="--direction: {mobile ? 'column' : 'row'}">
   <img src={lightLogoPath} alt="tagteam-logo" class="logo" />
-  <div class="linksContainer" use:links>
+  <div class={mobile ? 'linksContainerMobile' : 'linksContainer'} use:links>
     <a href="/" class="mainLink" style="--hoverColor: {colors.brand}">Home</a>
     <a
       href="/features"
