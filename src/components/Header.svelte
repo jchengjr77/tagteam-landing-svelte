@@ -1,5 +1,12 @@
 <script>
   import colors from '../colors';
+
+  // router imports
+  import { links } from 'svelte-routing';
+
+  // asset paths
+  let lightLogoPath = 'assets/logo-light.svg';
+
   console.log(colors);
 </script>
 
@@ -7,8 +14,8 @@
   h1 {
     color: var(--color);
     text-transform: uppercase;
-    font-size: 4em;
-    font-weight: 100;
+    font-size: 6em;
+    font-weight: 200;
     margin-block-start: 0;
     margin-block-end: 0;
   }
@@ -30,6 +37,7 @@
   }
 
   .mainLink {
+    transition: 0.5s;
     margin-left: 5%;
     margin-right: 5%;
     color: #4d4d4d;
@@ -37,16 +45,23 @@
     font-weight: 300;
   }
   .mainLink:hover {
+    transition: 0.5s;
     color: #ff3e00;
     text-decoration: none;
   }
 </style>
 
 <div class="headerContainer">
-  <h1 style="--color: {colors.brand};">TAGTEAM</h1>
-  <div class="linksContainer">
-    <a href="/" class="mainLink">Home</a>
-    <a href="/features" class="mainLink">Features</a>
-    <a href="/" class="mainLink">Community</a>
+  <img src={lightLogoPath} alt="tagteam-logo" />
+  <div class="linksContainer" use:links>
+    <a href="/" class="mainLink" style="--hoverColor: {colors.brand}">Home</a>
+    <a
+      href="/features"
+      class="mainLink"
+      style="--hoverColor: {colors.brand}">Features</a>
+    <a
+      href="/"
+      class="mainLink"
+      style="--hoverColor: {colors.brand}">Community</a>
   </div>
 </div>

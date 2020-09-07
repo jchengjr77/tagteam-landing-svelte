@@ -1,6 +1,15 @@
 <script>
-  export let name;
+  // component imports
   import Header from './components/Header.svelte';
+
+  // routing imports
+  import { Router, Route } from 'svelte-routing';
+
+  // page imports
+  import Home from './pages/Home.svelte';
+  import Features from './pages/Features.svelte';
+
+  export let url = '';
 </script>
 
 <style>
@@ -20,8 +29,8 @@
 
 <main>
   <Header />
-  <p>
-    Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn
-    how to build Svelte apps.
-  </p>
+  <Router {url}>
+    <Route path="/features" component={Features} />
+    <Route path="/" component={Home} />
+  </Router>
 </main>
