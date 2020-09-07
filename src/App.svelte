@@ -10,13 +10,15 @@
   import Features from './pages/Features.svelte';
 
   export let url = '';
+
+  export let width = window.innerWidth;
+  $: mobile = width < 700;
 </script>
 
 <style>
   main {
     text-align: center;
     padding: 1em;
-    max-width: 240px;
     margin: 0 auto;
   }
 

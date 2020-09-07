@@ -1,11 +1,13 @@
 <script>
   import colors from '../colors';
+  import { draw, fade } from 'svelte/transition';
+  import { quintOut } from 'svelte/easing';
 
   // router imports
   import { links } from 'svelte-routing';
 
   // asset paths
-  let lightLogoPath = 'assets/logo-light.svg';
+  let lightLogo = 'assets/logo-light.svg';
 
   export let width = window.innerWidth;
   $: mobile = width < 700;
@@ -60,7 +62,11 @@
 <svelte:window bind:innerWidth={width} />
 
 <div class="headerContainer" style="--direction: {mobile ? 'column' : 'row'}">
-  <img src={lightLogoPath} alt="tagteam-logo" class="logo" />
+  <img
+    src={lightLogo}
+    alt="logo"
+    class="logo"
+    in:fade={{ delay: 100, duration: 500 }} />
   <div class={mobile ? 'linksContainerMobile' : 'linksContainer'} use:links>
     <a href="/" class="mainLink" style="--hoverColor: {colors.brand}">Home</a>
     <a
