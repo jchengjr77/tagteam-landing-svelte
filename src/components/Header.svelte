@@ -7,19 +7,14 @@
   // asset paths
   let lightLogoPath = 'assets/logo-light.svg';
 
+  $: width;
+  $: height;
+
   console.log(colors);
+  console.log(width, height);
 </script>
 
 <style>
-  h1 {
-    color: var(--color);
-    text-transform: uppercase;
-    font-size: 6em;
-    font-weight: 200;
-    margin-block-start: 0;
-    margin-block-end: 0;
-  }
-
   .headerContainer {
     width: 100%;
     display: flex;
@@ -49,10 +44,17 @@
     color: #ff3e00;
     text-decoration: none;
   }
+
+  .logo {
+    width: 25%;
+    min-width: 200px;
+  }
 </style>
 
+<svelte:window bind:innerWidth={width} bind:innerHeight={height} />
+
 <div class="headerContainer">
-  <img src={lightLogoPath} alt="tagteam-logo" />
+  <img src={lightLogoPath} alt="tagteam-logo" class="logo" />
   <div class="linksContainer" use:links>
     <a href="/" class="mainLink" style="--hoverColor: {colors.brand}">Home</a>
     <a
